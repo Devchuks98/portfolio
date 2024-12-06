@@ -768,135 +768,161 @@ a:hover {
   font-size: 2rem;
   margin-bottom: 0;
 }
-/*======================================
-//--> VARIABLES
-======================================*/
 :root {
   --primary-color: #192655;
   --secondary-color: #4e4e4e;
   --highlight-color: #cd5c08;
+  --background-color: #f4f4f4;
   --white-color: #fff;
   --transition-time: 0.3s;
+  --border-radius: 10px;
 }
 
-/*======================================
-//--> PORTFOLIO
-======================================*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+}
+
+/* Navigation Improvements */
+.navbar {
+  background: linear-gradient(to right, var(--primary-color), #2c3e50);
+  padding: 1rem 0;
+  transition: all var(--transition-time) ease;
+}
+
+.navbar-brand {
+  color: var(--white-color) !important;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.nav-link {
+  color: var(--white-color) !important;
+  margin: 0 15px;
+  position: relative;
+  transition: color var(--transition-time) ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--highlight-color);
+  transition: width var(--transition-time) ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Portfolio Section Enhancements */
+.portfolio-mf {
+  background-color: var(--background-color);
+  padding: 4rem 0;
+}
+
 .work-box {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   background-color: var(--white-color);
-  backface-visibility: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform var(--transition-time) ease;
 }
 
-.work-box:hover img {
-  transform: scale(1.3);
-  transition: transform var(--transition-time) ease-in-out;
+.work-box:hover {
+  transform: translateY(-10px);
 }
 
 .work-img {
-  display: block;
+  position: relative;
   overflow: hidden;
 }
 
-.work-content {
-  padding: 2rem 3% 1rem 4%;
+.work-img img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform var(--transition-time) ease;
 }
 
-.work-content .w-more {
-  color: var(--secondary-color);
-  font-size: 0.8rem;
+.work-box:hover .work-img img {
+  transform: scale(1.1);
 }
 
-.work-content .w-more .w-ctegory,
-.work-content .w-like a {
-  color: var(--primary-color);
-}
-
-.work-content .w-like {
-  font-size: 2.5rem;
-  float: right;
-}
-
-/*======================================
-//--> TESTIMONIALS
-======================================*/
-.testimonial-box {
-  color: var(--white-color);
+.title {
+  padding: 1rem;
   text-align: center;
 }
 
-.testimonial-box .author {
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.4rem;
-  margin: 1rem 0;
-}
-
-.testimonial-box .comit {
-  background-color: var(--white-color);
+.w-title {
+  font-size: 1.2rem;
   color: var(--primary-color);
-  font-size: 2rem;
-  width: 52px;
-  height: 52px;
-  line-height: 52px;
-  margin: 0 auto;
-  border-radius: 50%;
+  margin-bottom: 0.5rem;
 }
 
-/*======================================
-//--> BUTTON
-======================================*/
-.button {
-  display: inline-block;
-  padding: 0.3rem 0.6rem;
-  font-size: 1rem;
-  border-radius: 0.3rem;
-  transition: all var(--transition-time) ease;
-  cursor: pointer;
+.w-ctegory {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
 }
 
-.button:hover {
-  background-color: #0062d3;
-  color: var(--white-color);
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .nav-link {
+    margin: 10px 0;
+  }
+
+  .portfolio-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .work-box {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 350px;
+  }
 }
 
-.button-a {
-  background-color: var(--primary-color);
-  color: var(--white-color);
+/* Skill Progress Bar */
+.skill-mf .progress {
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
+.skill-mf .progress-bar {
+  background-color: var(--highlight-color);
+  border-radius: 5px;
+}
+
+/* Buttons */
 .btn-color {
-  background: var(--highlight-color);
-  transition: all 1s ease;
+  background-color: var(--highlight-color);
+  color: var(--white-color);
+  border: 2px solid var(--highlight-color);
+  transition: all var(--transition-time) ease;
+  border-radius: var(--border-radius);
 }
 
 .btn-color:hover {
-  background: transparent;
-  border: 2px solid var(--highlight-color);
-  color: var(--white-color);
-}
-
-/*======================================
-//--> MEDIA QUERIES
-======================================*/
-@media (min-width: 577px) {
-  .counter-box {
-    margin-bottom: 1.8rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .testimonial-box .description {
-    padding: 0 5rem;
-  }
-
-  .box-shadow-full {
-    padding: 3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .back-to-top {
-    bottom: 15px;
-  }
+  background-color: transparent;
+  color: var(--highlight-color);
 }
