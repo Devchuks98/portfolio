@@ -24,22 +24,203 @@
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet" />
 
-    <!-- Custom Portfolio Styles -->
+    <!-- Enhanced Responsive Styles -->
     <style>
+      /* Base improvements */
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar improvements */
+      .navbar {
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      @media (max-width: 767px) {
+        .navbar-brand {
+          font-size: 1.25rem;
+        }
+        
+        .navbar-nav {
+          text-align: center;
+          margin-top: 1rem;
+        }
+        
+        .navbar-nav .nav-link {
+          padding: 0.75rem 1rem;
+          font-size: 1.1rem;
+        }
+      }
+
+      /* Hero section improvements */
+      .intro {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .intro-title {
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      }
+
+      .intro-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+      }
+
+      @media (max-width: 991px) {
+        .intro-title {
+          font-size: 2.5rem;
+        }
+        
+        .intro-subtitle {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .intro-title {
+          font-size: 2rem;
+        }
+        
+        .intro-subtitle {
+          font-size: 1rem;
+        }
+        
+        .btn {
+          padding: 0.75rem 2rem;
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .intro-title {
+          font-size: 1.75rem;
+        }
+        
+        .intro-subtitle {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* About section improvements */
+      .about-mf {
+        padding: 4rem 0;
+      }
+
+      .about-img {
+        margin-bottom: 2rem;
+      }
+
+      .about-img img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .about-info p {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+
+      .skill-mf {
+        margin-top: 2rem;
+      }
+
+      .skill-mf span {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .progress {
+        height: 8px;
+        margin-bottom: 1.5rem;
+        border-radius: 4px;
+      }
+
+      .about-me {
+        padding-left: 0;
+      }
+
+      .about-me .lead {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .download-button {
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 767px) {
+        .about-mf {
+          padding: 2rem 0;
+        }
+        
+        .about-img {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+        
+        .about-info {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+        
+        .skill-mf {
+          margin-top: 2rem;
+        }
+        
+        .about-me {
+          padding-left: 0;
+          text-align: center;
+        }
+        
+        .about-me .lead {
+          font-size: 1rem;
+          text-align: left;
+        }
+        
+        .download-button {
+          text-align: center;
+        }
+      }
+
       /* Portfolio Section Improvements */
       #portfolio {
         background: #f4f4f4;
-        padding: 60px 0;
+        padding: 4rem 0;
+      }
+
+      .portfolio-mf .title-a {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .portfolio-mf .subtitle-a {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
       }
       
       .portfolio-item {
-        margin-bottom: 30px;
+        margin-bottom: 2rem;
         transition: all 0.3s ease;
       }
       
       .portfolio-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
       }
       
       .work-box {
@@ -48,6 +229,9 @@
         background: white;
         box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
       }
       
       .work-img {
@@ -56,6 +240,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       }
       
       .work-img img {
@@ -66,37 +251,296 @@
       }
       
       .work-box:hover .work-img img {
-        transform: scale(1.1);
+        transform: scale(1.05);
+      }
+
+      .work-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .work-box:hover .work-overlay {
+        opacity: 1;
+      }
+
+      .work-content {
+        text-align: center;
+        color: white;
+      }
+
+      .work-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .work-content p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .work-link-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: #cd5c08;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: background 0.3s ease;
+      }
+
+      .work-link-btn:hover {
+        background: #b04d07;
       }
       
       .title {
-        padding: 15px;
+        padding: 1.5rem;
         background: #f9f9f9;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
       
       .w-title {
-        font-size: 18px;
-        margin-bottom: 5px;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
         color: #333;
         font-weight: 600;
       }
       
       .w-category {
         color: #777;
-        font-size: 14px;
+        font-size: 0.95rem;
+      }
+
+      /* Responsive grid improvements */
+      @media (max-width: 1199px) {
+        .portfolio-item {
+          margin-bottom: 2rem;
+        }
+      }
+
+      @media (max-width: 991px) {
+        #portfolio {
+          padding: 3rem 0;
+        }
+        
+        .portfolio-mf .title-a {
+          font-size: 2rem;
+        }
+        
+        .work-img {
+          height: 220px;
+        }
       }
       
-      @media (max-width: 768px) {
-        .portfolio-row {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
+      @media (max-width: 767px) {
+        #portfolio {
+          padding: 2rem 0;
+        }
+        
+        .portfolio-mf .title-a {
+          font-size: 1.75rem;
         }
         
         .portfolio-item {
-          flex: 0 0 100%;
-          max-width: 100%;
-          margin-bottom: 20px;
+          margin-bottom: 1.5rem;
+        }
+        
+        .work-img {
+          height: 200px;
+        }
+        
+        .title {
+          padding: 1rem;
+        }
+        
+        .w-title {
+          font-size: 1.1rem;
+        }
+        
+        .w-category {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 575px) {
+        .work-img {
+          height: 180px;
+        }
+        
+        .work-content h3 {
+          font-size: 1.25rem;
+        }
+        
+        .work-content p {
+          font-size: 0.9rem;
+        }
+        
+        .work-link-btn {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Footer improvements */
+      .footer-paralax {
+        padding: 3rem 0 1rem;
+      }
+
+      .socials {
+        margin-bottom: 2rem;
+      }
+
+      .socials ul {
+        margin: 0;
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .socials li {
+        margin: 0.5rem;
+      }
+
+      .ico-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .ico-circle:hover {
+        background: #cd5c08;
+        transform: scale(1.1);
+      }
+
+      @media (max-width: 767px) {
+        .footer-paralax {
+          padding: 2rem 0 1rem;
+        }
+        
+        .socials li {
+          margin: 0.25rem;
+        }
+        
+        .ico-circle {
+          width: 45px;
+          height: 45px;
+          font-size: 1.25rem;
+        }
+      }
+
+      /* Back to top button */
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #cd5c08;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background: #b04d07;
+        transform: scale(1.1);
+      }
+
+      @media (max-width: 767px) {
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          bottom: 15px;
+          right: 15px;
+        }
+      }
+
+      /* General responsive improvements */
+      .container {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      @media (max-width: 575px) {
+        .container {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+      }
+
+      /* Section spacing */
+      .sect-pt4 {
+        padding-top: 4rem;
+      }
+
+      @media (max-width: 767px) {
+        .sect-pt4 {
+          padding-top: 2rem;
+        }
+      }
+
+      /* Preloader improvements */
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Touch improvements for mobile */
+      @media (hover: none) and (pointer: coarse) {
+        .portfolio-item:hover {
+          transform: none;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .work-box:hover .work-img img {
+          transform: none;
+        }
+        
+        .work-overlay {
+          opacity: 0;
+          pointer-events: none;
+        }
+        
+        .ico-circle:hover {
+          transform: none;
         }
       }
     </style>
@@ -191,7 +635,7 @@
                         <img
                           src="img/potrait2.jpg"
                           class="img-fluid rounded b-shadow-a"
-                          alt=""
+                          alt="Eze Chukwuemeka"
                         />
                       </div>
                     </div>
@@ -217,7 +661,7 @@
                     </div>
                   </div>
                   <div class="skill-mf">
-                    <p class="title-s">Skill</p>
+                    <p class="title-s">Skills</p>
                     <span>Flutter</span> <span class="pull-right">85%</span>
                     <div class="progress">
                       <div
@@ -270,7 +714,7 @@
                       <h5 class="title-left">About Me</h5>
                     </div>
                     <p class="lead">
-                      I'm a mobile developer with expertise In Flutter and Dart.
+                      I'm a mobile developer with expertise in Flutter and Dart.
                       I have hands-on experience with Flutter, having worked on
                       multiple projects. My goal is to create captivating and
                       user-friendly mobile applications through skillful coding
@@ -311,13 +755,42 @@
           </div>
         </div>
 
-        <div class="row portfolio-row">
-          <!-- Project 1: Aurora Academy -->
-          <div class="col-md-4 col-sm-6 portfolio-item">
+        <div class="row">
+          <!-- Project 1: UniSpot  -->
+          <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
+            <a href="unispot.html">
+              <div class="work-box">
+                <div class="work-img">
+                  <img src="img/mockup_Image/unispot.png" alt="UniSpot App" class="img-fluid"/>
+                  <div class="work-overlay">
+                    <div class="work-content">
+                      <h3>UniSpot</h3>
+                      <p>Student Community Platform</p>
+                      <span class="work-link-btn">View Project</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="title text-center">
+                  <h2 class="w-title">UniSpot</h2>
+                  <p class="w-category">Student Community Platform</p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Project 2: Aurora Academy -->
+          <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
             <a href="aurora.html">
               <div class="work-box">
                 <div class="work-img">
                   <img src="img/mockup_Image/auroraa1.jpg" alt="Aurora Academy" class="img-fluid"/>
+                  <div class="work-overlay">
+                    <div class="work-content">
+                      <h3>Aurora Academy</h3>
+                      <p>School Management System</p>
+                      <span class="work-link-btn">View Project</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="title text-center">
                   <h2 class="w-title">Aurora Academy</h2>
@@ -327,12 +800,19 @@
             </a>
           </div>
 
-          <!-- Project 2: Mobile Banking -->
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          <!-- Project 3: Mobile Banking -->
+          <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
             <a href="kolomoni_mobile.html">
               <div class="work-box">
                 <div class="work-img">
                   <img src="img/mockup_Image/kolo1.jpg" alt="Mobile Banking" class="img-fluid"/>
+                  <div class="work-overlay">
+                    <div class="work-content">
+                      <h3>Mobile Banking</h3>
+                      <p>Financial Technology</p>
+                      <span class="work-link-btn">View Project</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="title text-center">
                   <h2 class="w-title">Mobile Banking</h2>
@@ -342,12 +822,19 @@
             </a>
           </div>
 
-          <!-- Project 3: Spring MediLab -->
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          <!-- Project 4: Spring MediLab -->
+          <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
             <a href="spring.html">
               <div class="work-box">
                 <div class="work-img">
                   <img src="img/mockup_Image/spring-1.png" alt="Spring MediLab" class="img-fluid"/>
+                  <div class="work-overlay">
+                    <div class="work-content">
+                      <h3>Spring MediLab</h3>
+                      <p>Healthcare Solution</p>
+                      <span class="work-link-btn">View Project</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="title text-center">
                   <h2 class="w-title">Spring MediLab</h2>
@@ -357,12 +844,19 @@
             </a>
           </div>
 
-          <!-- Project 4: Agency Banking -->
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          <!-- Project 5: Agency Banking -->
+          <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
             <a href="kolomoni_agency.html">
               <div class="work-box">
                 <div class="work-img">
                   <img src="img/mockup_Image/k4.jpg" alt="Agency Banking" class="img-fluid"/>
+                  <div class="work-overlay">
+                    <div class="work-content">
+                      <h3>Agency Banking</h3>
+                      <p>Financial Services</p>
+                      <span class="work-link-btn">View Project</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="title text-center">
                   <h2 class="w-title">Agency Banking</h2>
@@ -372,12 +866,19 @@
             </a>
           </div>
 
-          <!-- Project 5: Chatterbox -->
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          <!-- Project 6: Chatterbox -->
+          <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
             <a href="chatterbox-blog.html">
               <div class="work-box">
                 <div class="work-img">
                   <img src="img/mockup_Image/chatterbox-2.png" alt="Chatterbox" class="img-fluid"/>
+                  <div class="work-overlay">
+                    <div class="work-content">
+                      <h3>Chatterbox</h3>
+                      <p>Communication Platform</p>
+                      <span class="work-link-btn">View Project</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="title text-center">
                   <h2 class="w-title">Chatterbox</h2>
@@ -387,12 +888,19 @@
             </a>
           </div>
 
-          <!-- Project 6: Task Manager -->
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          <!-- Project 7: Task Manager -->
+          <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
             <a href="task-manager.html">
               <div class="work-box">
                 <div class="work-img">
                   <img src="img/mockup_Image/todo-1.png" alt="Task Manager" class="img-fluid"/>
+                  <div class="work-overlay">
+                    <div class="work-content">
+                      <h3>Task Manager</h3>
+                      <p>Productivity Tool</p>
+                      <span class="work-link-btn">View Project</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="title text-center">
                   <h2 class="w-title">Task Manager</h2>
@@ -419,35 +927,35 @@
                 <div id="socials" class="socials rounded d-flex justify-content-center">
                   <ul class="list-unstyled d-flex">
                     <li class="mx-3">
-                      <a href="https://github.com/Devchuks98">
+                      <a href="https://github.com/Devchuks98" aria-label="GitHub">
                         <span class="ico-circle">
                           <i class="ion-social-github"></i>
                         </span>
                       </a>
                     </li>
                     <li class="mx-3">
-                      <a href="https://wa.me/08131969117">
+                      <a href="https://wa.me/08100131711" aria-label="WhatsApp">
                         <span class="ico-circle">
                           <i class="ion-social-whatsapp"></i>
                         </span>
                       </a>
                     </li>
                     <li class="mx-3">
-                      <a href="https://twitter.com/stonecode_">
+                      <a href="https://twitter.com/stonecode_" aria-label="Twitter">
                         <span class="ico-circle">
                           <i class="ion-social-twitter"></i>
                         </span>
                       </a>
                     </li>
                     <li class="mx-3">
-                      <a href="https://www.linkedin.com/in/chukwuemeka-eze-564a55219/">
+                      <a href="https://www.linkedin.com/in/chukwuemeka-eze-564a55219/" aria-label="LinkedIn">
                         <span class="ico-circle">
                           <i class="ion-social-linkedin"></i>
                         </span>
                       </a>
                     </li>
                     <li class="mx-3">
-                      <a href="mailto:chuksmobile98@gmail.com">
+                      <a href="mailto:chuksmobile98@gmail.com" aria-label="Email">
                         <span class="ico-circle">
                           <i class="ion-ios-email"></i>
                         </span>
@@ -486,9 +994,85 @@
     <!-- Template Main Javascript File -->
     <script src="js/main.js"></script>
 
+    <!-- Additional JavaScript for improved UX -->
+    <script>
+      // Back to top button functionality
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+          $('.back-to-top').addClass('show');
+        } else {
+          $('.back-to-top').removeClass('show');
+        }
+      });
+
+      $('.back-to-top').click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop: 0}, 800);
+      });
+
+      // Smooth scrolling for navigation links
+      $('.js-scroll').click(function(e) {
+        e.preventDefault();
+        var target = $(this).attr('href');
+        var offset = 70; // Account for fixed navbar
+        
+        $('html, body').animate({
+          scrollTop: $(target).offset().top - offset
+        }, 800);
+        
+        // Close mobile menu if open
+        if ($('.navbar-collapse').hasClass('show')) {
+          $('.navbar-toggler').click();
+        }
+      });
+
+      // Active navigation highlight
+      $(window).scroll(function() {
+        var scrollPos = $(window).scrollTop() + 100;
+        
+        $('.nav-link').each(function() {
+          var currLink = $(this);
+          var refElement = $(currLink.attr('href'));
+          
+          if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+            $('.nav-link').removeClass('active');
+            currLink.addClass('active');
+          }
+        });
+      });
+
+      // Preloader
+      $(window).on('load', function() {
+        $('#preloader').fadeOut(500);
+      });
+
+      // Portfolio item click analytics (optional)
+      $('.portfolio-item a').click(function() {
+        var projectName = $(this).find('.w-title').text();
+        console.log('Portfolio item clicked:', projectName);
+      });
+
+      // Lazy loading for images (basic implementation)
+      $(window).on('scroll', function() {
+        $('.work-img img').each(function() {
+          var img = $(this);
+          var imgTop = img.offset().top;
+          var imgBottom = imgTop + img.outerHeight();
+          var viewportTop = $(window).scrollTop();
+          var viewportBottom = viewportTop + $(window).height();
+          
+          if (imgBottom > viewportTop && imgTop < viewportBottom) {
+            if (!img.hasClass('loaded')) {
+              img.addClass('loaded');
+            }
+          }
+        });
+      });
+    </script>
+
     <footer>
       <div class="container text-center py-3">
-        <p>&copy; 2024 Eze Chukwuemeka. All Rights Reserved.</p>
+        <p>&copy; 2025 Eze Chukwuemeka. All Rights Reserved.</p>
       </div>
     </footer>
   </body>
